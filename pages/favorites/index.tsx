@@ -1,11 +1,11 @@
 import React from "react";
 import type { NextPage } from "next";
-import { PostCardList } from "../components/PostCardList";
+import { PostCardList } from "../../components/PostCardList";
 
 const Home: NextPage = () => {
   const [posts, setPosts] = React.useState([]);
   React.useEffect(() => {
-    fetch("/api/posts")
+    fetch("/api/favorites")
       .then((response) => response.json())
       .then((data) => {
         setPosts(data);

@@ -1,16 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import type { NextPage } from "next";
 import { PostCardList } from "../components/PostCardList";
+import PostContext from "../context/PostContext";
 
 const Home: NextPage = () => {
-  const [posts, setPosts] = React.useState([]);
-  React.useEffect(() => {
-    fetch("/api/posts")
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-      });
-  }, []);
+  const {posts}= useContext(PostContext);
 
   return (
     <React.Fragment>

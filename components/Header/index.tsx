@@ -1,10 +1,12 @@
-import * as React from "react";
+import {useCallback} from "react";
+// Next imports
 import { useRouter } from "next/router";
 
+// Material-UI imports 
 import { Toolbar } from "@mui/material";
-
 import { Favorite, Home } from "@material-ui/icons";
 
+// Styles
 import {
   ToolBarButton,
   HeaderTypography,
@@ -15,7 +17,7 @@ import {
 export default function Header() {
   const router = useRouter();
 
-  const handleClick = React.useCallback(
+  const handleClick = useCallback(
     (value) => {
       router.push(`/${value}`)
     },
@@ -24,10 +26,10 @@ export default function Header() {
 
   return (
     <>
-      <HeaderAppBar position="static">
+      <HeaderAppBar position="fixed">
         <Toolbar>
           <HeaderTypography variant="h6" style={{ flex: 1 }}>
-            Noon
+            Noon - IG
           </HeaderTypography>
           <ToolBarButton>
             <IconButton
@@ -37,7 +39,7 @@ export default function Header() {
               aria-label="home"
               onClick={() => handleClick("")}
             >
-              <Home />
+              <Home /> Home
             </IconButton>
             <IconButton
               value="favorites"
@@ -46,7 +48,7 @@ export default function Header() {
               aria-label="favorite"
               onClick={() => handleClick("favorites")}
             >
-              <Favorite />
+              <Favorite/> Favorites
             </IconButton>
           </ToolBarButton>
         </Toolbar>

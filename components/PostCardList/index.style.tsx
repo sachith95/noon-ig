@@ -5,10 +5,11 @@ import {
 
 export const StyledGrid = styled(Grid)`
     && {
-        padding: 20px;
-        margin-bottom: 10%;
+        padding: 2PX;
+        margin-top: 7%;
+        margin-bottom: 15%;
         width: 100%;
         height: 100%;
-        overflow: auto;
+        overflow: fixed;
     }
 `;

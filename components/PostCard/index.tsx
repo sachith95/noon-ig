@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+
+// Material UI
 import {
   Avatar,
   CardActions,
@@ -6,59 +8,74 @@ import {
   CardHeader,
   CardMedia,
   Collapse,
-  IconButton,
   Typography,
-  Button,
-  Chip,
 } from "@mui/material";
+
+// Types
 import Post from "../../@types/post";
+
+// Internal Components
 import PostCardComment from "../PostCardComment";
-import { StyledCard, CardMediaOverlay, StyledTypography } from "./index.styles";
-import { Favorite } from "@material-ui/icons";
+import LikeButton from "../LikeButton";
+
+// Styles
+import {
+  StyledCard,
+  CardMediaOverlay,
+  StyledTypography,
+  CommentButton,
+  StyleTags,
+  StyledCardContent,
+} from "./index.styles";
 
 export default function PostCard({
-  id,
-  title,
-  author,
-  comments,
-  content,
-  image,
-  likes,
-}: Post) {
-  const [expanded, setExpanded] = React.useState(false);
-  const [liked, setLiked] = React.useState(false);
+  post,
+  handleLike,
+}: {
+  post: Post;
+  handleLike: (id: number) => void;
+}) {
+  const { id, title, content, comments, author, isLiked, image, likes } = post;
+  const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const handleFavoriteClick = () => {
-    setLiked(!liked);
+  const TextTransformer = () => {
+    const hashTags = content.match(/#\w+/g);
+    if (hashTags) {
+      const tags = hashTags.map((hashTag) => (
+        <StyleTags key={hashTag}>{hashTag}</StyleTags>
+      ));
+      return [content.replace(/#\w+/g, ""), ...tags];
+    } else {
+      return content;
+    }
   };
 
   return (
     <StyledCard>
-      <CardHeader avatar={ <Avatar src={author.avatar}></Avatar>} title={author.name} />
+      <CardHeader
+        avatar={<Avatar src={author.avatar}></Avatar>}
+        title={
+          <Typography variant="body1" color="secondary">
+            {author.name}
+          </Typography>
+        }
+      />
       <CardMedia component="img" src={image} height="200" />
       <CardMediaOverlay>
         <StyledTypography>{title}</StyledTypography>
       </CardMediaOverlay>
-      <CardContent>
-        <IconButton
-          aria-label="add to favorites"
-          onClick={() => {
-            handleFavoriteClick();
-          }}
-        >
-          <Favorite />
-        </IconButton>
-        <Typography variant="body2" component="p">
-          {content}
-        </Typography>
-      </CardContent>
+      <StyledCardContent>
+         <LikeButton isLiked={isLiked} handleClick={handleLike} id={id} likes={likes} />
+        <p>{TextTransformer()}</p>
+      </StyledCardContent>
       <CardActions disableSpacing>
-        <Button size="small" onClick={handleExpandClick}>
-          View {comments.length ? comments.length : "0"} comments
-        </Button>
+        <CommentButton size="small" onClick={handleExpandClick}>
+          {expanded ? "Hide" : "View"} {comments.length ? comments.length : "0"}{" "}
+          comments
+        </CommentButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>

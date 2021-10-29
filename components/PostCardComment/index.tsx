@@ -1,26 +1,20 @@
-import React from "react";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemAvatar,
-  Avatar,
-  Box,
-} from "@mui/material";
+// Material UI components
+import { ListItemText, ListItemAvatar, Avatar } from "@mui/material";
+
+// Styles
+import { StyledListItem, StyledList } from "./index.style";
 
 export default function PostCardComment({ comments }: any) {
   return (
-    <Box>
-      <List>
-        {comments.map(({ author, content }: any, index: number) => (
-          <ListItem button key={index}>
-            <ListItemAvatar>
-              <Avatar alt={author.name} src={author.avatar} />
-            </ListItemAvatar>
-            <ListItemText primary={content} />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+    <StyledList>
+      {comments.map(({ author, content }: any, index: number) => (
+        <StyledListItem key={index}>
+          <ListItemAvatar>
+            <Avatar src={author.avatar} />
+          </ListItemAvatar>
+          <ListItemText primary={author.name} secondary={content} />
+        </StyledListItem>
+      ))}
+    </StyledList>
   );
 }

@@ -1,9 +1,9 @@
-import * as React from "react";
+// Next.js imports
 import { useRouter } from "next/router";
-
+// Material-UI imports
 import { BottomNavigationAction, Paper } from "@mui/material";
-
 import { Favorite, Home } from "@material-ui/icons";
+// Styles
 import { StyledBottomNavigation } from "./index.style";
 
 export default function BottomNavigation() {
@@ -19,7 +19,6 @@ export default function BottomNavigation() {
         onChange={(event: Object, newValue: string) => {
           router.push(`/${newValue}`);
         }}
-        className="bottom-navigation"
       >
         <BottomNavigationAction label="Home" value="" icon={<Home />} />
         <BottomNavigationAction

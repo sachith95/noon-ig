@@ -10,6 +10,7 @@ interface Post {
     avatar: string;
   };
   likes: number;
+  isLiked: boolean;
   comments: {
     id: number;
     content: string;

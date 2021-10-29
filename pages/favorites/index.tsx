@@ -1,22 +1,32 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+// Next.js imports
 import type { NextPage } from "next";
+// custom imports
 import { PostCardList } from "../../components/PostCardList";
+// type imports
+import Post from "../../@types/post";
+// context imports
+import PostContext from "../../context/PostContext";
 
-const Home: NextPage = () => {
-  const [posts, setPosts] = React.useState([]);
-  React.useEffect(() => {
-    fetch("/api/favorites")
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-      });
-  }, []);
+const Favorite: NextPage = () => {
+  let { posts } = useContext(PostContext);
+  const [favoritePosts, setFavoritePosts] = React.useState<Post[]>([]);
+
+  useEffect(() => {
+    if (posts) {
+      setFavoritePosts(posts.filter((post: Post) => post.isLiked));
+    }
+  }, [posts]);
 
   return (
     <React.Fragment>
-      <PostCardList posts={posts} />
+      {favoritePosts ? (
+        <PostCardList posts={favoritePosts} />
+      ) : (
+        <p> No favorite posts yet. </p>
+      )}
     </React.Fragment>
   );
 };
 
-export default Home;
+export default Favorite;

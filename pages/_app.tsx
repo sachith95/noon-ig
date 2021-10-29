@@ -1,12 +1,19 @@
 import React from "react";
+// Next.js imports
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Container, ThemeProvider } from "@material-ui/core";
+// Material-UI imports
+import { ThemeProvider } from "@material-ui/core";
+// Styles imports
 import { ThemeProvider as StyleThemeProvider } from "styled-components";
 import theme from "../styles/theme";
+// Custom components imports
 import Header from "../components/Header";
 import BottomNavigation from "../components/BottomNavigation";
-import { Box } from "@mui/system";
+// Context imports
+import PostContext from "../context/PostContext";
+// types
+import Post from "../@types/post";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isMobile, setIsMobile] = React.useState(false);
@@ -20,6 +27,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     return () => window.removeEventListener("resize", handleWindowSizeChange);
   }, []);
 
+  const [posts, setPosts] = React.useState([] as Post[]);
+  React.useEffect(() => {
+    fetch("/api/posts")
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts(data);
+      });
+  }, []);
+
   return (
     <React.Fragment>
       <Head>
@@ -27,21 +43,19 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <StyleThemeProvider theme={theme}>
-          {isMobile ? (
-            <Box>
-              <Container>
+          <PostContext.Provider value={{posts, setPosts}}>
+            {isMobile ? (
+              <>
                 <Component {...pageProps} />
-              </Container>
-              <BottomNavigation />
-            </Box>
-          ) : (
-            <Box>
-              <Header />
-              <Container>
+                <BottomNavigation />
+              </>
+            ) : (
+              <>
+                <Header />
                 <Component {...pageProps} />
-              </Container>
-            </Box>
-          )}
+              </>
+            )}
+          </PostContext.Provider>
         </StyleThemeProvider>
       </ThemeProvider>
     </React.Fragment>

@@ -4,7 +4,7 @@ import React from "react";
 import { Favorite } from "@material-ui/icons";
 
 // Styles
-import { StyledIconButton } from "./index.styles";
+import { StyledIconButton } from "./index.style";
 
 export default function LikeButton({
   id,

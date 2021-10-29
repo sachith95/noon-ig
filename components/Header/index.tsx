@@ -48,7 +48,7 @@ export default function Header() {
               aria-label="favorite"
               onClick={() => handleClick("favorites")}
             >
-              <Favorite/> Favorites
+              <Favorite/> Liked
             </IconButton>
           </ToolBarButton>
         </Toolbar>

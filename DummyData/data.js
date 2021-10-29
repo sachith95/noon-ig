@@ -4,7 +4,7 @@ export const data = {
       id: "1",
       title: "Love",
       content: "#Love#Together#Dog",
-      image: "https://picsum.photos/id/237/200/300",
+      image: "https://picsum.photos/id/237/536/354",
       author: {
         name: "Seventh77",
         avatar: "https://picsum.photos/id/100/50/50",
@@ -38,7 +38,7 @@ export const data = {
         },
         {
           id: "4",
-          content: "People",
+          content: "This is amazing, i love this",
           author: {
             name: "fly43",
             avatar: "https://picsum.photos/id/56/50/50/",
@@ -48,9 +48,9 @@ export const data = {
     },
     {
       id: "2",
-      title: "Avengers Assemble!!!",
+      title: "Avengers!!!",
       content: "Be the captain #Avengers#Captain#America",
-      image: "https://picsum.photos/id/1019/200/300/",
+      image: "https://picsum.photos/id/1019/536/354",
       author: {
         name: "Cap54",
         avatar: "https://picsum.photos/id/56/50/50",
@@ -88,7 +88,7 @@ export const data = {
       id: "3",
       title: "World!!!",
       content: "#earth#tree#people#animal",
-      image: "https://picsum.photos/id/1059/200/300/",
+      image: "https://picsum.photos/id/1059/536/354",
       author: {
         name: "root",
         avatar: "https://picsum.photos/id/76/50/50",

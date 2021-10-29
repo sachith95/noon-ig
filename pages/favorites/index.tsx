@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from "react";
 // Next.js imports
 import type { NextPage } from "next";
+// MAterial-UI imports
+import { Grid, Typography } from "@material-ui/core";
 // custom imports
 import { PostCardList } from "../../components/PostCardList";
 // type imports
@@ -20,10 +22,17 @@ const Favorite: NextPage = () => {
 
   return (
     <React.Fragment>
-      {favoritePosts ? (
+      {favoritePosts.length > 0 ? (
         <PostCardList posts={favoritePosts} />
       ) : (
-        <p> No favorite posts yet. </p>
+        <Grid
+          container
+          justify="center"
+          alignItems="center"
+          style={{ marginTop: "200px" }}
+        >
+          <Typography variant="h5">No favorite posts yet</Typography>
+        </Grid>
       )}
     </React.Fragment>
   );

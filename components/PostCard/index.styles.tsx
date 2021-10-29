@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card, Typography, Button, CardContent, IconButton } from "@mui/material";
+import { Card, Typography, Button, CardContent, IconButton, CardMedia } from "@mui/material";
 
 export const StyledCard = styled(Card)`
   && {
@@ -12,15 +12,16 @@ export const StyledCard = styled(Card)`
     width: 100%;
     max-width: 400px;
     position: relative;
+    border-radius: 10px;
   }
 `;
 
 export const CardMediaOverlay = styled.div`
    {
     position: absolute;
-    top: 240px;
-    left: 50%;
-    width: 100%;
+    top: 280px;
+    left: 0;
+    padding-left: 35%;
     transform: translateX(-50%);
   }
 `;
@@ -76,4 +77,12 @@ export const StyledIconButton = styled(IconButton)`
     border: none;
     font-size: 1rem;
   }
+`;
+
+export const StyledCardMedia = styled(CardMedia)`
+    && {
+        border-radius: 10px;
+        height: 250px;
+        background-size: contain;
+    }
 `;

@@ -26,6 +26,7 @@ import {
   CommentButton,
   StyleTags,
   StyledCardContent,
+  StyledCardMedia,
 } from "./index.styles";
 
 export default function PostCard({
@@ -63,12 +64,17 @@ export default function PostCard({
           </Typography>
         }
       />
-      <CardMedia component="img" src={image} height="200" />
+      <StyledCardMedia image={image} />
       <CardMediaOverlay>
         <StyledTypography>{title}</StyledTypography>
       </CardMediaOverlay>
       <StyledCardContent>
-         <LikeButton isLiked={isLiked} handleClick={handleLike} id={id} likes={likes} />
+        <LikeButton
+          isLiked={isLiked}
+          handleClick={handleLike}
+          id={id}
+          likes={likes}
+        />
         <p>{TextTransformer()}</p>
       </StyledCardContent>
       <CardActions disableSpacing>
